@@ -1,0 +1,31 @@
+version:  "3.8"
+networks:
+  net:
+    external: true
+services:
+  zookeeper:
+    image: sppo55/alex:zookeeper-v1
+    container_name: zookeeper
+    hostname: zookeeper
+    ports:
+      - "2181:2181"
+    networks:
+      - net
+    volumes:
+       - /etc/localtime:/etc/localtime:ro
+       - /opt/zookeeper/conf/zoo.cfg:/opt/apache-zookeeper-3.5.9-bin/conf/zoo.cfg
+       - /opt/zookeeper/log:/opt/apache-zookeeper-3.5.9-bin/log
+       - /opt/zookeeper/data:/opt/apache-zookeeper-3.5.9-bin/data
+  kafka:
+    image: sppo55/alex:kafka-v1
+    container_name: kafka
+    hostname: kafka
+    ports:
+      - "9092:9092"
+    networks:
+      - net
+    volumes:
+       - /etc/localtime:/etc/localtime:ro
+       - /opt/kafka/config:/opt/kafka_2.12-2.6.1/config
+       - /opt/kafka/data:/opt/kafka_2.12-2.6.1/data
+       - /opt/kafka/logs:/opt/kafka_2.12-2.6.1/logs

@@ -1,0 +1,57 @@
+# zookeeper docker swarm
+# 要先建立docker 網卡
+#docker network create --attachable -d overlay --subnet=10.200.0.0/16 elk-net
+version: '3.8'
+networks:
+  elk-net:
+
+services:
+  zookeeper1:
+    image: sppo55/alex:zookeeper-v1
+    hostname: zookeeper1
+    networks:
+      - elk-net
+    deploy:
+      placement:
+        constraints: [node.labels.elk == 1]
+      restart_policy:
+        condition: on-failure
+    ports:
+       - '2181:2181'
+    volumes:
+       - /etc/localtime:/etc/localtime:ro
+       - /opt/zookeeper1/conf/zoo-swarm.cfg:/opt/apache-zookeeper-3.5.9-bin/conf/zoo.cfg
+       - /opt/zookeeper1/log:/opt/apache-zookeeper-3.5.9-bin/log
+       - /opt/zookeeper1/data:/opt/apache-zookeeper-3.5.9-bin/data
+
+  zookeeper2:
+    image: sppo55/alex:zookeeper-v1
+    hostname: zookeeper2
+    networks:
+      - elk-net
+    deploy:
+      placement:
+        constraints: [node.labels.elk == 2]
+      restart_policy:
+        condition: on-failure
+    volumes:
+       - /etc/localtime:/etc/localtime:ro
+       - /opt/zookeeper2/conf/zoo-swarm.cfg:/opt/apache-zookeeper-3.5.9-bin/conf/zoo.cfg
+       - /opt/zookeeper2/log:/opt/apache-zookeeper-3.5.9-bin/log
+       - /opt/zookeeper2/data:/opt/apache-zookeeper-3.5.9-bin/data
+
+  zookeeper3:
+    image: sppo55/alex:zookeeper-v1
+    hostname: zookeeper3
+    networks:
+      - elk-net
+    deploy:
+      placement:
+        constraints: [node.labels.elk == 3]
+      restart_policy:
+        condition: on-failure
+    volumes:
+       - /etc/localtime:/etc/localtime:ro
+       - /opt/zookeeper3/conf/zoo-swarm.cfg:/opt/apache-zookeeper-3.5.9-bin/conf/zoo.cfg
+       - /opt/zookeeper3/log:/opt/apache-zookeeper-3.5.9-bin/log
+       - /opt/zookeeper3/data:/opt/apache-zookeeper-3.5.9-bin/data
