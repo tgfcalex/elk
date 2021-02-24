@@ -1,0 +1,77 @@
+version: '3.8'
+
+networks:
+  elk-net:
+
+services:
+#kafka服务
+  kafka1:
+    image: sppo55/alex:kafka-v1
+    hostname: kafka1
+    restart: always
+    ports:
+      - "9092:9092"
+    networks:
+      - elk-net
+    volumes:
+       - /etc/localtime:/etc/localtime:ro
+       - /opt/kafka1/config:/opt/kafka_2.12-2.6.1/config
+       - /opt/kafka1/data:/opt/kafka_2.12-2.6.1/data
+       - /opt/kafka1/logs:/opt/kafka_2.12-2.6.1/logs
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.labels.elk == 1]
+      resources:
+        limits:
+          memory: 1GB
+        reservations:
+          memory: 512M
+
+  kafka2:
+    image: sppo55/alex:kafka-v1
+    hostname: kafka2
+    restart: always
+    networks:
+      - elk-net
+    volumes:
+       - /etc/localtime:/etc/localtime:ro
+       - /opt/kafka2/config:/opt/kafka_2.12-2.6.1/config
+       - /opt/kafka2/data:/opt/kafka_2.12-2.6.1/data
+       - /opt/kafka2/logs:/opt/kafka_2.12-2.6.1/logs
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.labels.elk == 2]
+      resources:
+        limits:
+          memory: 1GB
+        reservations:
+          memory: 512M
+
+  kafka3:
+    image: sppo55/alex:kafka-v1
+    hostname: kafka3
+    restart: always
+    networks:
+      - elk-net
+    volumes:
+       - /etc/localtime:/etc/localtime:ro
+       - /opt/kafka3/config:/opt/kafka_2.12-2.6.1/config
+       - /opt/kafka3/data:/opt/kafka_2.12-2.6.1/data
+       - /opt/kafka3/logs:/opt/kafka_2.12-2.6.1/logs
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.labels.elk == 3]
+      resources:
+        limits:
+          memory: 1GB
+        reservations:
+          memory: 512M
