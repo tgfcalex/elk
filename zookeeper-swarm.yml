@@ -1,16 +1,18 @@
 # zookeeper docker swarm
 # 要先建立docker 網卡
 #docker network create --attachable -d overlay --subnet=10.200.0.0/16 elk-net
-version: '3.8'
+version: '3.5'
+
 networks:
-  elk-net:
+  elk_net:
+    external: true
 
 services:
   zookeeper1:
     image: sppo55/alex:zookeeper-v1
     hostname: zookeeper1
     networks:
-      - elk-net
+      - elk_net
     deploy:
       placement:
         constraints: [node.labels.elk == 1]
@@ -28,7 +30,7 @@ services:
     image: sppo55/alex:zookeeper-v1
     hostname: zookeeper2
     networks:
-      - elk-net
+      - elk_net
     deploy:
       placement:
         constraints: [node.labels.elk == 2]
@@ -44,7 +46,7 @@ services:
     image: sppo55/alex:zookeeper-v1
     hostname: zookeeper3
     networks:
-      - elk-net
+      - elk_net
     deploy:
       placement:
         constraints: [node.labels.elk == 3]

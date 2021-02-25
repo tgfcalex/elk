@@ -1,6 +1,6 @@
-version:  "3.8"
+version:  "3.5"
 networks:
-  net:
+  elk_net:
     external: true
 services:
   zookeeper:
@@ -10,7 +10,7 @@ services:
     ports:
       - "2181:2181"
     networks:
-      - net
+      - elk_net
     volumes:
        - /etc/localtime:/etc/localtime:ro
        - /opt/zookeeper/conf/zoo.cfg:/opt/apache-zookeeper-3.5.9-bin/conf/zoo.cfg
@@ -23,7 +23,7 @@ services:
     ports:
       - "9092:9092"
     networks:
-      - net
+      - elk_net
     volumes:
        - /etc/localtime:/etc/localtime:ro
        - /opt/kafka/config:/opt/kafka_2.12-2.6.1/config

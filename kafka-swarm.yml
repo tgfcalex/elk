@@ -1,18 +1,18 @@
-version: '3.8'
+version: '3.5'
 
 networks:
-  elk-net:
+  elk_net:
+    external: true
 
 services:
 #kafka服务
   kafka1:
     image: sppo55/alex:kafka-v1
     hostname: kafka1
-    restart: always
     ports:
       - "9092:9092"
     networks:
-      - elk-net
+      - elk_net
     volumes:
        - /etc/localtime:/etc/localtime:ro
        - /opt/kafka1/config:/opt/kafka_2.12-2.6.1/config
@@ -33,9 +33,8 @@ services:
   kafka2:
     image: sppo55/alex:kafka-v1
     hostname: kafka2
-    restart: always
     networks:
-      - elk-net
+      - elk_net
     volumes:
        - /etc/localtime:/etc/localtime:ro
        - /opt/kafka2/config:/opt/kafka_2.12-2.6.1/config
@@ -56,9 +55,8 @@ services:
   kafka3:
     image: sppo55/alex:kafka-v1
     hostname: kafka3
-    restart: always
     networks:
-      - elk-net
+      - elk_net
     volumes:
        - /etc/localtime:/etc/localtime:ro
        - /opt/kafka3/config:/opt/kafka_2.12-2.6.1/config

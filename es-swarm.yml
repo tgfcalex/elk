@@ -1,6 +1,8 @@
-version: '3.8'
+version: '3.5'
 networks:
-  elk-net:
+  elk_net:
+    external: true
+
 services:
   es01:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
@@ -16,14 +18,14 @@ services:
 #        soft: -1
 #        hard: -1
     networks:
-      - elk-net
+      - elk_net
     deploy:
       placement:
         constraints: [node.labels.elk == 1]
       restart_policy:
         condition: on-failure
-#    ports:
-#      - '9200:9200'
+    ports:
+      - '9200:9200'
     volumes:
       - /opt/elasticsearch1/data:/usr/share/elasticsearch/data/
       - /opt/elasticsearch1/logs:/usr/share/elasticsearch/logs/
@@ -42,7 +44,7 @@ services:
 #        soft: -1
 #        hard: -1
     networks:
-      - elk-net
+      - elk_net
     deploy:
       placement:
         constraints: [node.labels.elk == 2]
@@ -67,7 +69,7 @@ services:
 #        soft: -1
 #        hard: -1
     networks:
-      - elk-net
+      - elk_net
     deploy:
       placement:
         constraints: [node.labels.elk == 3]
