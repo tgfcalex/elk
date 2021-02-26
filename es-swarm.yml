@@ -4,32 +4,33 @@ networks:
     external: true
 
 services:
-  es01:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
-    hostname: es01
-    environment:
+#  es01:
+#    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
+#    hostname: es01
+#    environment:
 #      - node.name=es01
 #      - cluster.name=es-cluster
 #      - discovery.seed_hosts=es02,es03
 #      - cluster.initial_master_nodes=es01,es02,es03
-      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
+#      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
 #    ulimits:
 #      memlock:
 #        soft: -1
 #        hard: -1
-    networks:
-      - elk_net
-    deploy:
-      placement:
-        constraints: [node.labels.elk == 1]
-      restart_policy:
-        condition: on-failure
-    ports:
-      - '9200:9200'
-    volumes:
-      - /opt/elasticsearch1/data:/usr/share/elasticsearch/data/
-      - /opt/elasticsearch1/logs:/usr/share/elasticsearch/logs/
-      - /opt/elasticsearch1/config:/usr/share/elasticsearch/config/
+#    networks:
+#      - elk_net
+#    deploy:
+#      placement:
+#        constraints: [node.labels.elk == 1]
+#      restart_policy:
+#        condition: on-failure
+#    ports:
+#      - '9200:9200'
+#    volumes:
+#      - /opt/elasticsearch1/data:/usr/share/elasticsearch/data/
+#      - /opt/elasticsearch1/logs:/usr/share/elasticsearch/logs/
+#      - /opt/elasticsearch1/config:/usr/share/elasticsearch/config/
+
   es02:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
     hostname: es02

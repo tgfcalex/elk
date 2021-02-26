@@ -18,8 +18,9 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - /opt/elasticsearch/data:/usr/share/elasticsearch/data/
-      - /opt/elasticsearch/logs:/usr/share/elasticsearch/logs/
-      - /opt/elasticsearch/config:/usr/share/elasticsearch/config/
+      - /opt/elasticsearch1/data:/usr/share/elasticsearch/data/
+      - /opt/elasticsearch1/logs:/usr/share/elasticsearch/logs/
+      - /opt/elasticsearch1/config:/usr/share/elasticsearch/config/
     ports:
       - 9200:9200
+      - 9300:9300
