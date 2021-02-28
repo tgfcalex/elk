@@ -7,5 +7,5 @@ path.logs: /usr/share/elasticsearch/logs/
 network.host: 0.0.0.0
 http.port: 9200
 transport.port: 9300
-discovery.seed_hosts: ["es01","es02","es03"]
+discovery.seed_hosts: ["es02","es03"]
 cluster.initial_master_nodes: ["es01","es02","es03"]
