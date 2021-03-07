@@ -9,7 +9,6 @@ filebeat.inputs:
 
 
 
-
 - type: log
   enabled: true
   paths:
@@ -17,6 +16,13 @@ filebeat.inputs:
   fields:
     log_topics: lb_core_ngx_r
 
+
+- type: log
+  enabled: true
+  paths:
+    - /usr/share/filebeat/logs/site/*.log
+  fields:
+    log_topics: lb_site_ngx
 
 
 output.kafka:

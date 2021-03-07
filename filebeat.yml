@@ -21,3 +21,4 @@ services:
 #      - /opt/filebeat/data:/usr/share/filebeat/data
       - /tmp/logs/r:/usr/share/filebeat/logs/r/
       - /tmp/logs/t:/usr/share/filebeat/logs/t/
+      - /tmp/logs/site:/usr/share/filebeat/logs/site/
