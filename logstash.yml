@@ -1,0 +1,24 @@
+version: '3.5'
+
+networks:
+  elk_net:
+    external: true
+
+services:
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.11.1
+    hostname: logstash
+    networks:
+      - elk_net
+    environment:
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+    deploy:
+      placement:
+        constraints: [node.labels.elk == 1]
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - /opt/logstash/config:/usr/share/logstash/config/
+#      - /opt/logstash/data:/usr/share/logstash/data/
+      - /opt/logstash/logs:/usr/share/logstash/logs/
+#      - /var/elk/logstash/GeoLite2-City.mmdb:/usr/share/logstash/GeoLite2-City.mmdb
