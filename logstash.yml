@@ -22,5 +22,5 @@ services:
     volumes:
       - /opt/logstash/config:/usr/share/logstash/config/
 #      - /opt/logstash/data:/usr/share/logstash/data/
-      - /opt/logstash/logs:/usr/share/logstash/logs/
+#      - /opt/logstash/logs:/usr/share/logstash/logs/
 #      - /var/elk/logstash/GeoLite2-City.mmdb:/usr/share/logstash/GeoLite2-City.mmdb
