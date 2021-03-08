@@ -10,6 +10,8 @@ services:
     hostname: logstash
     networks:
       - elk_net
+    ports:
+      - "5044:5044"
     environment:
       - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
     deploy:
