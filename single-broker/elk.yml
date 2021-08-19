@@ -1,7 +1,7 @@
 version: '3.5'
 
 networks:
-  elk_net:
+  net:
     external: true
 
 services:
@@ -11,7 +11,7 @@ services:
     hostname: es01
     restart: always
     networks:
-      - elk_net
+      - net
     environment:
       - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
     ulimits:
@@ -33,7 +33,7 @@ services:
     container_name: kibana
     restart: always
     networks:
-      - elk_net
+      - net
     ports:
       - "5601:5601"
     volumes:
@@ -46,11 +46,11 @@ services:
     hostname: logstash
     restart: always
     networks:
-      - elk_net
+      - net
     ports:
       - "5044:5044"
     environment:
-      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /opt/logstash/config:/usr/share/logstash/config/
@@ -62,7 +62,7 @@ services:
     container_name: filebeat
     restart: always
     networks:
-      - elk_net
+      - net
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /opt/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
