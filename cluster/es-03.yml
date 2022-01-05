@@ -1,0 +1,29 @@
+version: '3.5'
+
+networks:
+  net:
+    external: true
+
+services:
+  es03:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
+    container_name: es03
+    hostname: es03
+    restart: always
+    networks:
+      net:
+        ipv4_address: 172.100.0.100
+    environment:
+      - "ES_JAVA_OPTS=-Xms3g -Xmx3g"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /opt/elasticsearch3/data:/usr/share/elasticsearch/data/
+      - /opt/elasticsearch3/logs:/usr/share/elasticsearch/logs/
+      - /opt/elasticsearch3/config:/usr/share/elasticsearch/config/
+    ports:
+      - 9200:9200
+      - 9300:9300

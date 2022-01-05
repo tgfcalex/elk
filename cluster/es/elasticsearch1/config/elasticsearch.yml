@@ -1,0 +1,14 @@
+cluster.name: es-cluster
+node.name: es01
+node.master: true
+path.data: /usr/share/elasticsearch/data/
+path.logs: /usr/share/elasticsearch/logs/
+bootstrap.memory_lock: true
+network.host: 0.0.0.0
+http.port: 9200
+transport.port: 9300
+network.publish_host: 10.140.0.97 #內網or外網IP(非容器IP)
+discovery.seed_hosts: ["10.140.0.98","10.140.0.99"]
+cluster.initial_master_nodes: ["10.140.0.97","10.140.0.98","10.140.0.99"]
+http.cors.enabled: true
+http.cors.allow-origin: '*'

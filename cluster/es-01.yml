@@ -1,0 +1,42 @@
+version: '3.5'
+
+networks:
+  net:
+    external: true
+
+services:
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
+    container_name: es01
+    hostname: es01
+    restart: always
+    networks:
+      net:
+        ipv4_address: 172.100.0.100
+    environment:
+      - "ES_JAVA_OPTS=-Xms3g -Xmx3g"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /opt/elasticsearch1/data:/usr/share/elasticsearch/data/
+      - /opt/elasticsearch1/logs:/usr/share/elasticsearch/logs/
+      - /opt/elasticsearch1/config:/usr/share/elasticsearch/config/
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.16.2
+    hostname: kibana
+    container_name: kibana
+    restart: always
+    networks:
+      - net
+    ports:
+      - "5601:5601"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /opt/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
