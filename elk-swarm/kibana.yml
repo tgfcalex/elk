@@ -6,7 +6,7 @@ networks:
 
 services:
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.11.1
+    image: docker.elastic.co/kibana/kibana:7.16.2
     hostname: kibana
     networks:
       - elk_net

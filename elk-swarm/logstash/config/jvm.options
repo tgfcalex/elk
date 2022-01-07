@@ -17,9 +17,9 @@
 ################################################################
 
 ## GC configuration
--XX:+UseConcMarkSweepGC
--XX:CMSInitiatingOccupancyFraction=75
--XX:+UseCMSInitiatingOccupancyOnly
+8-13:-XX:+UseConcMarkSweepGC
+8-13:-XX:CMSInitiatingOccupancyFraction=75
+8-13:-XX:+UseCMSInitiatingOccupancyOnly
 
 ## Locale
 # Set the locale language
@@ -79,3 +79,6 @@
 
 # Copy the logging context from parent threads to children
 -Dlog4j2.isThreadContextMapInheritable=true
+
+17-:--add-opens java.base/sun.nio.ch=ALL-UNNAMED
+17-:--add-opens java.base/java.io=ALL-UNNAMED

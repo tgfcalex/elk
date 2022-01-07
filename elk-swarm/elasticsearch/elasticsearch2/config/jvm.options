@@ -1,7 +1,5 @@
-
 -Xms2g
 -Xmx2g
-
 
 ## GC configuration
 8-13:-XX:+UseConcMarkSweepGC
@@ -25,6 +23,10 @@
 # are created in the working directory of the JVM unless an alternative path is
 # specified
 -XX:+HeapDumpOnOutOfMemoryError
+
+# exit right after heap dump on out of memory error. Recommended to also use
+# on java 8 for supported versions (8u92+).
+9-:-XX:+ExitOnOutOfMemoryError
 
 # specify an alternative path for heap dumps; ensure the directory exists and
 # has sufficient space

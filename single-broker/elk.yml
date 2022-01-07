@@ -6,7 +6,7 @@ networks:
 
 services:
   es01:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
     container_name: es01
     hostname: es01
     restart: always
@@ -28,7 +28,7 @@ services:
       - 9300:9300
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.11.1
+    image: docker.elastic.co/kibana/kibana:7.16.2
     hostname: kibana
     container_name: kibana
     restart: always
@@ -41,7 +41,7 @@ services:
       - /opt/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
 
   logstash:
-    image: docker.elastic.co/logstash/logstash:7.11.1
+    image: docker.elastic.co/logstash/logstash:7.16.2
     container_name: logstash
     hostname: logstash
     restart: always
@@ -57,7 +57,7 @@ services:
       - /opt/logstash/patterns:/usr/share/logstash/patterns/
 
   filebeat:
-    image: docker.elastic.co/beats/filebeat:7.11.1
+    image: docker.elastic.co/beats/filebeat:7.16.2
     hostname: filebeat
     container_name: filebeat
     restart: always

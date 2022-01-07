@@ -5,7 +5,7 @@ networks:
 
 services:
   es01:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
     hostname: es01
     environment:
 #      - node.name=es01
@@ -32,7 +32,7 @@ services:
       - /opt/elasticsearch1/config:/usr/share/elasticsearch/config/
 
   es02:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
     hostname: es02
     environment:
 #      - node.name=es02
@@ -57,7 +57,7 @@ services:
       - /opt/elasticsearch2/config:/usr/share/elasticsearch/config/
 
   es03:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
     hostname: es03
     environment:
 #      - node.name=es03
