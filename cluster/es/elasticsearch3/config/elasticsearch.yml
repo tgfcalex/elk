@@ -1,6 +1,8 @@
 cluster.name: es-cluster
 node.name: es03
-node.master: true
+#node.master: true
+#not delete index is all
+action.destructive_requires_name: true
 path.data: /usr/share/elasticsearch/data/
 path.logs: /usr/share/elasticsearch/logs/
 bootstrap.memory_lock: true

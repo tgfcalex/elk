@@ -1,6 +1,9 @@
 server.name: kibana
-server.host: "0"
+server.host: "0.0.0.0"
+#server.host: "0"
 server.port: 5601
 elasticsearch.hosts: ["http://es01:9200"]
-
+#server.ssl.enabled: true
+#server.ssl.certificate: /usr/share/kibana/ssl/bigboss101.com.crt
+#server.ssl.key: /usr/share/kibana/ssl/bigboss101.com.key
 kibana.index: ".kibana"

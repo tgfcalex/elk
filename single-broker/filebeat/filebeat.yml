@@ -11,7 +11,28 @@ filebeat.inputs:
   fields:
     log_topics: first-test
 
+#- type: http_endpoint
+#  enabled: true
+#  listen_address: 0.0.0.0
+#  listen_port: 8443
+#  ssl.enabled: true
+#  ssl.certificate: "/usr/share/filebeat/ssl/bigboss101.com.crt"
+#  ssl.key: "/usr/share/filebeat/ssl/bigboss101.com.key"
+#  ssl.verification_mode: "none"
+#  ssl.certificate_authority: "/usr/share/filebeat/ssl/bigboss101.com.pem"
+#processors:
+#  - drop_fields:
+#      fields: ["host.name", "ecs.version", "agent.version", "agent.type", "agent.id", "agent.ephemeral_id", "agent.hostname", "agent.name", "input.type"]
+
 output.kafka:
   enabled: true
   hosts: ["kafka:9092"]
   topic: '%{[fields][log_topics]}'
+
+
+#output.elasticsearch:
+#  hosts: ["http://10.140.0.97:9200","http://10.140.0.98:9200","http://10.140.0.99:9200"]
+#  index: "client_app-%{+yyyy.MM.dd}"
+#setup.template.name: "client_app"
+#setup.template.pattern: "client_app-*"
+#setup.ilm.enabled: false
